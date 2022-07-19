@@ -21,26 +21,26 @@ config.bind = [f"0.0.0.0:{port}"]
 ###*###
 
 
-bot = TelegramClient()
+client = TelegramClient("...")
 
 
 @app.route('/')
 async def hello_world():
    return 'Hello World'
 
-@bot.on(events.NewMessage(pattern='/start'))
+@client.on(events.NewMessage(pattern='/start'))
 async def start(event):
     return await event.respond('hello World!')
 
 
 async def sbot():
-  await bot.start()
-  print("bot started")
+  await client.start()
+  print("client started")
    
 def main():
  if __name__ == "__main__":
-   bot.loop.run_until_complete(sbot()) 
-   bot.loop.run_until_complete(hypercorn.asyncio.serve(aapp, config))
+   client.loop.run_until_complete(sbot()) 
+   client.loop.run_until_complete(hypercorn.asyncio.serve(aapp, config))
  
  
 main()
