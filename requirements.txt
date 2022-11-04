@@ -1,0 +1,4 @@
+flask
+telethon
+hypercorn
+asgiref
