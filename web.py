@@ -33,17 +33,19 @@ async def start(event):
     return await event.respond('hello World!')
 
 
-async def sbot():
+async def start():
   await client.start()
-  print("client started")
+  await hypercorn.asyncio.serve(aapp, config)
+  await client.run_until_disconnected()
+
    
-def main():
- if __name__ == "__main__":
-   client.loop.run_until_complete(sbot()) 
-   client.loop.run_until_complete(hypercorn.asyncio.serve(aapp, config))
+
+if __name__ == "__main__":
+  client.loop.run_until_complete(start()) 
+  
  
  
-main()
+
   
 
   
